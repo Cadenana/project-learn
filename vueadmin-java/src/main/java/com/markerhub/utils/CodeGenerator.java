@@ -1,4 +1,4 @@
-package com.markerhub;
+package com.markerhub.utils;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;

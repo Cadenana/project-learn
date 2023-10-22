@@ -10,7 +10,7 @@ import com.markerhub.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -38,10 +38,10 @@ public class AuthController extends BaseController{
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		ImageIO.write(image, "jpg", outputStream);
 
-		BASE64Encoder encoder = new BASE64Encoder();
+		Base64.Encoder encoder=Base64.getEncoder();
 		String str = "data:image/jpeg;base64,";
 
-		String base64Img = str + encoder.encode(outputStream.toByteArray());
+		String base64Img = str + encoder.encodeToString(outputStream.toByteArray());
 
 		redisUtil.hset(Const.CAPTCHA_KEY, key, code, 120);
 
